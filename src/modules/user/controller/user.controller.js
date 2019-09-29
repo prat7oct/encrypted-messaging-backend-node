@@ -28,7 +28,7 @@ exports.login = async (req, res) => {
         if (!user) throw "User is not found";
         let passMatch = await comparePassword(data.password, user.password);
         if (!passMatch) throw "Invalid Password";
-        let token = jwt.sign({ email: user.email }, 'shhhhh');
+        let token = jwt.sign({ email: user.email }, secret);
         delete user.password;
         return res.status(200).send({ result: user, token: token, message: "Successfully logged in user" });
     } catch (e) {

@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 const secret = "292a8848-e2c7-11e9-81b4-2a2ae2dbcce4";
+const LocalStorage = require('node-localstorage').LocalStorage;
+const localStorage = new LocalStorage('./db');
 
 exports.auth = (req, res, next) => {
     try {
@@ -15,6 +17,5 @@ exports.auth = (req, res, next) => {
     }
     catch (e) {
         res.status(401).send({ error: "Unauthorized Access", stack: e });
-
     }
 }
